@@ -1,4 +1,4 @@
-@extends('layout.index3')
+@extends('layouts.main')
 @section('style')
     <style>
         #exitoRazonSocial {
@@ -56,192 +56,162 @@
             text-align: center;
             display: none;
         }
+
+        .down-box{
+            margin-top: 2.3%!important;
+        }
     </style>
 @endsection
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-
-        </div><!-- /.container-fluid -->
-    </div>
-    <section class="content">
-        <div class="container-fluid">
-            <div class="card card-gray">
-                <!-- Desplegar y contraer contenido -->
-                <div class="card-header">
-                    <h3 class="card-title">Busqueda de Vehículos Sunarp</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                    class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                    class="fas fa-times"></i></button>
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="pe-7s-keypad" style="color: #3f6ad8"></i>
+                    </div>
+                    <div>
+                        Busqueda de Vehículos Sunarp
                     </div>
                 </div>
-                <!-- /.Fin de desplegar y contraer contenido -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group-sm">
-                                <label>Oficina</label>
-                                <!--<input type="text" class="form-control" id="razon_social" name="razon_social" placeholder="Ingresa una placa">-->
-                                <select class="form-control input-sm" name="oficina" id="oficina">
-                                    <option value="0">Seleccione</option>
-                                    @foreach($oficinas as $of)
-                                        <option value="{{$of['codZona']}} {{$of['codOficina']}}">{{$of['descripcion']}}
-                                            - {{$of['codZona']}} - {{$of['codOficina']}}</option>
-                                    @endforeach
-                                </select>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-gray">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="form-group-sm">
+                                    <label>Oficina</label>
+                                    <select class="form-control input-sm" name="oficina" id="oficina">
+                                        <option value="0">Seleccione</option>
+                                        @foreach($oficinas as $of)
+                                            <option value="{{$of['codZona']}} {{$of['codOficina']}}">{{$of['descripcion']}}
+                                                - {{$of['codZona']}} - {{$of['codOficina']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="form-group-sm">
-                                <label>Nro de Placa</label>
-                                <input type="text" class="form-control input-sm" id="numero_placa"
-                                       placeholder="Ingresa una placa">
+                            <div class="col-sm-5">
+                                <div class="form-group-sm">
+                                    <label>Nro de Placa</label>
+                                    <input type="text" class="form-control input-sm" id="numero_placa"
+                                        placeholder="Ingresa una placa">
+                                </div>
+                            </div>
+                            <div class="col-sm-1 text-center down-box">
+                                <div class="form-group-sm">
+                                    <button class="btn btn-primary btn-sm" type="button" onclick="cargar();"><span
+                                                class="fa fa-search"></span> Buscar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 text-center down-box">
+                                <div class="form-group-sm">
+                                    <button type="button" class="btn btn-block btn-default btn-sm" id="imprimir"
+                                            data-href="{{url('/pide/sunarp/vehiculos/imprimir')}}" onclick="imprimir();">
+                                        <i class="fa fa-print"></i> Imprimir
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <!-- /.col -->
-                    <div class="row">
-                        <div class="col-sm-1">
-                        </div>
-                        <div class="col-sm-1 text-center">
-                            <div class="form-group-sm">
-                                <button class="btn btn-primary btn-sm" type="button" onclick="cargar();"><span
-                                            class="fa fa-search"></span> Buscar
-                                </button>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-gray">
+                    <div class="card-header">
+                        <h3 class="card-title">Lista de Propietarios y Vehículos</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="cargandoVehiculo" class="text-center">
+                                    <img width="200"
+                                        src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}"/>
+                                    <p>
+                                        Cargando contenido
+                                    </p>
+                                </div>
+
+                                <div class="table-responsive" id="contenedor_vehiculo">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-1 text-center">
-                            <div class="form-group-sm">
-                                <button type="button" class="btn btn-block btn-default btn-sm" id="imprimir"
-                                        data-href="{{url('/pide/sunarp/vehiculos/imprimir')}}" onclick="imprimir();">
-                                    <i class="fa fa-print"></i> Imprimir
-                                </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="cargando" class="text-center">
+                                    <img width="200"
+                                        src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}"/>
+                                    <p>
+                                        Cargando contenido
+                                    </p>
+                                </div>
+
+                                <div class="table-responsive" id="contenedor_propietarios">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.card -->
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="card card-gray">
-                <!-- Desplegar y contraer contenido -->
-                <div class="card-header">
-                    <h3 class="card-title">Lista de Propietarios y Vehículos</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                    class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                    class="fas fa-times"></i></button>
-                    </div>
-                </div>
-                <!-- /.Fin de desplegar y contraer contenido -->
-
-                <!--Inicio Tabla-->
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="cargandoVehiculo" class="text-center">
-                                <img width="200"
-                                     src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}"/>
-                                <p>
-                                    Cargando contenido
-                                </p>
-                            </div>
-
-                            <div class="table-responsive" id="contenedor_vehiculo">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Fin Tabla-->
-
-                <!--Inicio Tabla-->
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="cargando" class="text-center">
-                                <img width="200"
-                                     src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}"/>
-                                <p>
-                                    Cargando contenido
-                                </p>
-                            </div>
-
-                            <div class="table-responsive" id="contenedor_propietarios">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Fin Tabla-->
-
-            </div>
-            <!-- /.card -->
-        </div>
-    </section>
-
-
-
-
-    <!--Inicio del modal Buscar Titular-->
-    <div class="modal fade" id="AbrirBuscarTitular" style="overflow-y: scroll;" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">CONSULTAR TITULARIDAD</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @include('pide.sunarp.vehiculos.consultar.consultarTitularidad')
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
     </div>
-    <!--Fin del modal-->
+</div>
 
-    <!--Inicio del modal Buscar Asiento-->
-    <div class="modal fade" id="AbrirBuscarAsiento" style="z-index: 1600;" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">CONSULTAR ASIENTOS</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @include('pide.sunarp.vehiculos.consultar.consultarAsientos')
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
+<!--Inicio del modal Buscar Titular-->
+<div class="modal fade" id="AbrirBuscarTitular" style="overflow-y: scroll;" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">CONSULTAR TITULARIDAD</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-            <!-- /.modal-content -->
+            <div class="modal-body">
+                @include('pide.sunarp.vehiculos.consultar.consultarTitularidad')
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <!-- /.modal-dialog -->
+        <!-- /.modal-content -->
     </div>
-    <!--Fin del modal-->
+    <!-- /.modal-dialog -->
+</div>
+<!--Fin del modal-->
 
+<!--Inicio del modal Buscar Asiento-->
+<div class="modal fade" id="AbrirBuscarAsiento" style="z-index: 1600;" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">CONSULTAR ASIENTOS</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @include('pide.sunarp.vehiculos.consultar.consultarAsientos')
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--Fin del modal-->
 
 @endsection
 @section('scripts')
@@ -458,7 +428,7 @@
                                         //var razon_social=nombre+" "+paterno+" "+materno;
                                         htmlPropietarios += '<tr style="font-size: 12px">';
                                         htmlPropietarios += '<td>' + aux + '</td>';
-                                        htmlPropietarios += '<td><button type="button" class="btn btn-warning btn-md" data-nombres_persona="' + nombre + '" data-apellido_paterno_persona="' + paterno + '" data-apellido_materno_persona="' + materno + '" data-razon_social="' + element.verDetalleRPVResponse.vehiculo.propietarios.nombre[i] + '" data-toggle="modal" data-target="#AbrirBuscarTitular"> <i class="far fa-eye"></i> Ver titularidad </button></td>';
+                                        htmlPropietarios += '<td><button type="button" class="btn btn-warning btn-md" data-nombres_persona="' + nombre + '" data-apellido_paterno_persona="' + paterno + '" data-apellido_materno_persona="' + materno + '" data-razon_social="' + element.verDetalleRPVResponse.vehiculo.propietarios.nombre[i] + '" data-toggle="modal" data-target="#AbrirBuscarTitular"> <i class="fa fa-eye"></i> Ver titularidad </button></td>';
                                         if (element.verDetalleRPVResponse.vehiculo.propietarios.nombre[i] == null) {
                                             htmlPropietarios += '<td></td>';
                                         } else {
@@ -496,7 +466,7 @@
                                     //var razon_social=nombre+" "+paterno+" "+materno;
                                     htmlPropietarios += '<tr style="font-size: 12px">';
                                     htmlPropietarios += '<td>1</td>';
-                                    htmlPropietarios += '<td><button type="button" class="btn btn-warning btn-sm" data-nombres_persona="' + nombre + '" data-apellido_paterno_persona="' + paterno + '" data-apellido_materno_persona="' + materno + '" data-razon_social="' + element.verDetalleRPVResponse.vehiculo.propietarios.nombre + '" data-toggle="modal" data-target="#AbrirBuscarTitular"> <i class="far fa-eye"></i> Ver titularidad </button></td>';
+                                    htmlPropietarios += '<td><button type="button" class="btn btn-warning btn-sm" data-nombres_persona="' + nombre + '" data-apellido_paterno_persona="' + paterno + '" data-apellido_materno_persona="' + materno + '" data-razon_social="' + element.verDetalleRPVResponse.vehiculo.propietarios.nombre + '" data-toggle="modal" data-target="#AbrirBuscarTitular"> <i class="fa fa-eye"></i> Ver titularidad </button></td>';
                                     htmlPropietarios += '<td>' + element.verDetalleRPVResponse.vehiculo.propietarios.nombre + '</td>';
                                     htmlPropietarios += '</tr>';
 
@@ -554,4 +524,7 @@
             modal.find('.modal-body #razon_social').val(razon_social_juridica_modal_editar);
         });
     </script>
+    <script>
+        $('#AbrirBuscarTitular').appendTo("body").modal('show');
+        </script>
 @endsection

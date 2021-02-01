@@ -4,11 +4,6 @@
 			<!-- Desplegar y contraer contenido -->
 			<div class="card-header">
 				<h3 class="card-title">Busqueda de Asientos Sunarp</h3>
-
-				<div class="card-tools">
-					<button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-					<button type="button" class="btn btn-tool btn-sm" data-card-widget="remove"><i class="fas fa-times"></i></button>
-				</div>
 			</div>
 			<!-- /.Fin de desplegar y contraer contenido -->
 
@@ -51,15 +46,6 @@
 							<input type="text" class="form-control input-sm" id="numero_partida" name="numero_partida" value="" placeholder="Ingresa el N° de partida">
 						</div>
 					</div>
-
-
-					<!--<div class="col-md-3">
-                      <div class="form-group">
-                        <label>Acción</label>
-                        <button type="submit" class="btn btn-block btn-primary"><i class="fa fa-search fa-1x"></i> Buscar</button>
-                      </div>
-                    </div>-->
-					<!-- /.col -->
 				</div>
 			</div>
 
@@ -89,11 +75,6 @@
 			<!-- Desplegar y contraer contenido -->
 			<div class="card-header">
 				<h3 class="card-title">Lista de Asientos</h3>
-
-				<div class="card-tools">
-					<button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-					<button type="button" class="btn btn-tool btn-sm" data-card-widget="remove"><i class="fas fa-times"></i></button>
-				</div>
 			</div>
 			<!-- /.Fin de desplegar y contraer contenido -->
 

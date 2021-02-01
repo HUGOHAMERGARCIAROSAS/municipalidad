@@ -1,117 +1,74 @@
 <section class="content">
-<div class="container-fluid">
-<div class="card card-gray">
-		<!-- Desplegar y contraer contenido -->
-          <div class="card-header">
-            <h3 class="card-title">Busqueda de Razón Social Sunarp</h3>
-
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+    <div class="container-fluid">
+        <div class="card card-gray">
+            <div class="card-header">
+                <h3 class="card-title">Busqueda de Razón Social Sunarp</h3>
             </div>
-          </div>
-          <!-- /.Fin de desplegar y contraer contenido -->
-          <div class="card-body">
-            <div class="row">
-
-	            <div class="col-sm-3">
-	                <div class="form-group">
-		                 <label>Tipo Persona</label>
-		                  <!--<input type="text" class="form-control" id="razon_social" name="razon_social" placeholder="Ingresa una placa">-->
-		                 <select class="form-control input-sm" name="tipoParticipante" id="tipoParticipante">
-	                                                
-		                    <!--<option value="0" disabled="disabled">Seleccione</option>-->
-		                    <option value="N" selected="selected">Persona Natural</option>
-		                    <option value="J">Persona Jurídica</option>
-		                </select>
-	                </div>
-	            </div>
-
-	            <div class="col-sm-4" id="div_razon_social">
-	              <div class="form-group">
-	                <label>Razón Social</label>
-	                <input type="text" class="form-control input-sm" id="razon_social" name="razon_social" placeholder="Ingresa la razón social">
-	              </div>
-	            </div>
-
-	            <div class="col-sm-3" id="div_paterno">
-	              <div class="form-group">
-	                <label>Apellido Paterno</label>
-	                <input type="text" class="form-control input-sm" id="apellido_paterno_persona" name="apellido_paterno_persona" placeholder="Ingresa apellido paterno">
-	              </div>
-	            </div>
-
-	            <div class="col-sm-3" id="div_materno">
-	              <div class="form-group">
-	                <label>Apellido Paterno</label>
-	                <input type="text" class="form-control input-sm" id="apellido_materno_persona" name="apellido_materno_persona" placeholder="Ingresa apellido materno">
-	              </div>
-	            </div>
-
-	            <div class="col-sm-3" id="div_nombre">
-	              <div class="form-group">
-	                <label>Nombres</label>
-	                <input type="text" class="form-control input-sm" id="nombres_persona" name="nombres_persona" placeholder="Ingresa nombres">
-	              </div>
-	            </div>
-              <!-- /.col -->
-            	
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Tipo Persona</label>
+                            <select class="form-control input-sm" name="tipoParticipante" id="tipoParticipante">
+                                <option value="N" selected="selected">Persona Natural</option>
+                                <option value="J">Persona Jurídica</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" id="div_razon_social">
+                        <div class="form-group">
+                            <label>Razón Social</label>
+                            <input type="text" class="form-control input-sm" id="razon_social" name="razon_social" placeholder="Ingresa la razón social">
+                        </div>
+                    </div>
+                    <div class="col-sm-3" id="div_paterno">
+                        <div class="form-group">
+                            <label>Apellido Paterno</label>
+                            <input type="text" class="form-control input-sm" id="apellido_paterno_persona" name="apellido_paterno_persona" placeholder="Ingresa apellido paterno">
+                        </div>
+                    </div>
+                    <div class="col-sm-3" id="div_materno">
+                        <div class="form-group">
+                            <label>Apellido Paterno</label>
+                            <input type="text" class="form-control input-sm" id="apellido_materno_persona" name="apellido_materno_persona" placeholder="Ingresa apellido materno">
+                        </div>
+                    </div>
+                    <div class="col-sm-3" id="div_nombre">
+                        <div class="form-group">
+                            <label>Nombres</label>
+                            <input type="text" class="form-control input-sm" id="nombres_persona" name="nombres_persona" placeholder="Ingresa nombres">
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-          
-</div>
-        <!-- /.card -->
-</div>
+        </div>
+    </div>
 </section>
-
 <section class="content">
-<div class="container-fluid">
-<div class="card card-gray">
-		<!-- Desplegar y contraer contenido -->
-          <div class="card-header">
-            <h2 class="card-title">Lista de Razón Social</h2>
-
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+    <div class="container-fluid">
+        <div class="card card-gray">
+            <div class="card-header">
+                <h2 class="card-title">Lista de Razón Social</h2>
             </div>
-          </div>
-          <!-- /.Fin de desplegar y contraer contenido -->
- <!--Inicio Tabla-->
- <!--<div class="card-body">
- 	<div class="row">
- 		<div class="col-md-6">
- 			<div class="form-group"><label id="lblexisten" value="">Existen: 0 en total</label> </div>
- 		</div>
- 	</div>
- </div>-->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="cargandoTitularidad" class="text-center">
+                            <img width="200" src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}" />
+                            <p>
+                            Cargando contenido
+                            </p>
+                        </div>
+                        <div class="table-responsive" id="contenedor_titularidad">
+                        </div>
 
- <div class="card-body">
-  <div class="row">
-    <div class="col-md-12">
-      	<div id="cargandoTitularidad" class="text-center">
-        	<img width="200" src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}" />
-	        <p>
-	          Cargando contenido
-	        </p>
-      	</div>
-
-        <div class="table-responsive" id="contenedor_titularidad">   
-    	</div>
-    
-  </div>
-  </div>
- </div>
- <!-- /.card -->
-</div>
-</div>
+                    </div>
+                </div>
+            </div>
+    <!-- /.card -->
+        </div>
+    </div>
 </section>
-
-
-
-
-
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		var nombre;
@@ -200,7 +157,7 @@
 				razon_social = $("#razon_social").val();
             $('#contenedor_titularidad').empty();
             obtenerDatos();
-        
+
         });
 
     	$('#AbrirBuscarTitular').on('hide.bs.modal', function (event) {
@@ -211,7 +168,7 @@
 	    function obtenerDatos()
 	    {
 	    	//$('#tipoParticipante option:selected').val()
-	    	var tipoParticipante = $('#tipoParticipante option:selected').val(); 
+	    	var tipoParticipante = $('#tipoParticipante option:selected').val();
 	    	console.log("tipoParticipante: ", tipoParticipante);
 	      $("#cargandoTitularidad").show();
 	      $("#listo").hide();
@@ -238,7 +195,7 @@
 				var nombre = $('#nombre').val();
 				var paterno = $('#paterno').val();
 				var materno = $('#materno').val();
-				cargarAjax(nombre,paterno,materno);	
+				cargarAjax(nombre,paterno,materno);
 				}else{
 					alert("Ingresa los datos completos")
 				}*/
@@ -261,8 +218,8 @@
 			          tipoParticipante: tipoParticipante
 			      		},
 			          dataType: "json",
-			          type:"get",      
-			        
+			          type:"get",
+
 			        })
 			        .done(function(response){
 			        var html;
@@ -281,7 +238,7 @@
 			          			mostrarExito();
 			          		}
 			          	}
-			          	
+
 			          });
 			      	});
 				}
@@ -294,8 +251,8 @@
 			          tipoParticipante: tipoParticipante
 			      		},
 			          dataType: "json",
-			          type:"get",      
-			        
+			          type:"get",
+
 			        })
 					.done(function(response){
 			        var html;
@@ -477,10 +434,10 @@
 			              }
 
 
-			              
+
 			              html+='<tr>';
 			              html+='<td>1</td>';
-			              html+='<td><button type="button" class="btn btn-warning btn-md"  data-toggle="modal" data-numero_partida="'+numero_partida+'" data-registro="'+registro+'" data-oficina="'+oficina+'" data-target="#AbrirBuscarAsiento"> <i class="far fa-eye"></i> Ver Asientos </button></td>';
+			              html+='<td><button type="button" class="btn btn-warning btn-md"  data-toggle="modal" data-numero_partida="'+numero_partida+'" data-registro="'+registro+'" data-oficina="'+oficina+'" data-target="#AbrirBuscarAsiento"> <i class="fa fa-eye"></i> Ver Asientos </button></td>';
 			              if(element.buscarTitularidadResponse.respuestaTitularidad.respuestaTitularidad.nombre==null){
 			                html+='<td></td>';
 			              }else{
@@ -556,7 +513,7 @@
 			              }else{
 			              html+='<td>'+element.buscarTitularidadResponse.respuestaTitularidad.respuestaTitularidad.zona+'</td>';
 			              }
-			              
+
 			              html+='</tr>';
 			              html+='</table>';
 			            $('#contenedor_titularidad').append(html);
@@ -744,7 +701,7 @@
 			              var aux=1+i;
 			              html+='<tr style="font-size: 12px">';
 			              html+='<td>'+aux+'</td>';
-			              html+='<td><button type="button" class="btn btn-warning btn-md"  data-toggle="modal" data-numero_partida="'+numero_partida+'" data-registro="'+registro+'" data-oficina="'+oficina+'" data-target="#AbrirBuscarAsiento"> <i class="far fa-eye"></i> Ver Asientos </button></td>';
+			              html+='<td><button type="button" class="btn btn-warning btn-md"  data-toggle="modal" data-numero_partida="'+numero_partida+'" data-registro="'+registro+'" data-oficina="'+oficina+'" data-target="#AbrirBuscarAsiento"> <i class="fa fa-eye"></i> Ver Asientos </button></td>';
 			              if(element.buscarTitularidadResponse.respuestaTitularidad.respuestaTitularidad[i].nombre==null){
 			                html+='<td></td>';
 			              }else{
@@ -820,11 +777,11 @@
 			              }else{
 			              html+='<td>'+element.buscarTitularidadResponse.respuestaTitularidad.respuestaTitularidad[i].zona+'</td>';
 			              }
-			              
+
 			              html+='</tr>';
-			              
+
 			              //console.log(element.personaJuridica.resultado[i].tipo)
-			              
+
 			            }
 			            html+='</table>';
 			            $('#contenedor_titularidad').append(html);
@@ -847,9 +804,9 @@
 			                 "sProcessing":"Procesando...",
 			                  }
 			            });
-			            
+
 			}
-			
+
 	    }
 	$('#AbrirBuscarAsiento').on('show.bs.modal', function (event) {
         	var button = $(event.relatedTarget)
@@ -864,7 +821,7 @@
 	        modal.find('.modal-body #registro').val(registro_modal_editar);
 	        modal.find('.modal-body #oficinaAsiento').val(oficina_modal_editar);
 	        modal.find('.modal-body #razon_social_juridica').val(razon_social_juridica_modal_editar);
-        
+
         });
 
 	});

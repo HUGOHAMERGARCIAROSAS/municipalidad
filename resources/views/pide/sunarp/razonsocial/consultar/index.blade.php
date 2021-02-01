@@ -1,92 +1,80 @@
-@extends('layout.index3')
+@extends('layouts.main')
+@section('style')
+<style>
+    .down-box{
+            margin-top: 2.3%!important;
+    }
+</style>
+@endsection
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-        </div><!-- /.container-fluid -->
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="pe-7s-keypad" style="color: #3f6ad8"></i>
+                    </div>
+                    <div>
+                        Busqueda de Razón Social Sunarp
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-gray">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="form-group">
+                                    <label>Razón Social</label>
+                                    <input type="text" class="form-control input-sm" id="razon_social" name="razon_social"
+                                        placeholder="Ingresa la razón social">
+                                </div>
+                            </div>
+                            <div class="col-sm-1 text-center down-box">
+                                <div class="form-group">
+                                    <button type="button" onclick="cargarDatos();" class="btn btn-primary btn-sm"><i
+                                                class="fa fa-search fa-1x"></i> Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-gray">
+                    <!-- Desplegar y contraer contenido -->
+                    <div class="card-header">
+                        <h2 class="card-title">Lista de Razón Social</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="cargando" class="text-center">
+                                    <img width="200"
+                                            src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}"/>
+                                    <p>
+                                        Cargando contenido
+                                    </p>
+                                </div>
+                                <div class="table-responsive" id="contenedor_razonsocial">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </section>
     </div>
-    <section class="content">
-
-        <div class="container-fluid">
-            <div class="card card-gray">
-                <!-- Desplegar y contraer contenido -->
-                <div class="card-header">
-                    <h2 class="card-title">Busqueda de Razón Social Sunarp</h2>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                    class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                    class="fas fa-times"></i></button>
-                    </div>
-                </div>
-
-                <!-- /.Fin de desplegar y contraer contenido -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Razón Social</label>
-                                <input type="text" class="form-control input-sm" id="razon_social" name="razon_social"
-                                       placeholder="Ingresa la razón social">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                        </div>
-                        <div class="col-sm-4 text-center">
-                            <div class="form-group">
-                                <button type="button" onclick="cargarDatos();" class="btn btn-primary btn-sm"><i
-                                            class="fa fa-search fa-1x"></i> Buscar
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- /.card -->
-        </div>
-    </section>
-
-    <section class="content">
-        <div class="container-fluid">
-            <div class="card card-gray">
-                <!-- Desplegar y contraer contenido -->
-                <div class="card-header">
-                    <h2 class="card-title">Lista de Razón Social</h2>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                    class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                    class="fas fa-times"></i></button>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="cargando" class="text-center">
-                                <img
-                                        width="200"
-                                        src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}"/>
-                                <p>
-                                    Cargando contenido
-                                </p>
-                            </div>
-                            <div class="table-responsive" id="contenedor_razonsocial">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- /.card -->
-            </div>
-        </div>
-    </section>
+</div>
 
     <script type="text/javascript">
         $(document).ready(function () {

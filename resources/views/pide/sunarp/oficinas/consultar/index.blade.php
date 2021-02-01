@@ -1,4 +1,4 @@
-@extends('layout.index3')
+@extends('layouts.main')
 @section('style')
     <style>
         #exitoRazonSocial{
@@ -58,65 +58,59 @@
     </style>
 @endsection
 @section('content')
-<div class="content-header">
-      <div class="container-fluid">
-      </div><!-- /.container-fluid -->
-</div>
-
-
-          <!-- /.Fin de desplegar y contraer contenido -->
-<section class="content">
-<div class="container-fluid">
-<div class="card card-gray">
-    <!-- Desplegar y contraer contenido -->
-          <div class="card-header">
-            <h2 class="card-title">Lista de Oficinas</h2>
-
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="pe-7s-keypad" style="color: #3f6ad8"></i>
+                    </div>
+                    <div>
+                        Lista de Oficinas
+                    </div>
+                </div>
             </div>
-          </div>
-
- <div class="card-body">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="table-responsive">
-      <table class="table table-borderless  text-center" id="dataoficinas">
-        <thead class="bg-gray" style="font-size: 14px">
-          <th>#</th>
-                  <th>COD OFICINA</th>
-                  <th>COD ZONA</th>
-                  <th>DESCRIPCION</th>
-                  
-        </thead>
-@php
-$aux=0; 
-@endphp
-        @foreach($oficinas['oficina']['oficina'] as $of)  
-@php
-
-
-$aux=$aux+1; 
-@endphp   
-        <tr style="font-size: 12px">
-                  <td>{{$aux}}</td>
-                  <td>{{$of['codOficina']}}</td>
-                  <td>{{$of['codZona']}}</td>
-                  <td>{{$of['descripcion']}}</td>
-         
-        </tr>
-        @endforeach
-            </table>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-gray">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table  text-center" id="dataoficinas">
+                                    {{-- <table class="table table-borderless  text-center" id="dataoficinas"> --}}
+                                        <thead class="bg-gray" style="font-size: 14px">
+                                                <th>#</th>
+                                                <th>COD OFICINA</th>
+                                                <th>COD ZONA</th>
+                                                <th>DESCRIPCION</th>
+                                        </thead>
+                                        @php
+                                        $aux=0;
+                                        @endphp
+                                        @foreach($oficinas['oficina']['oficina'] as $of)
+                                            @php
+                                            $aux=$aux+1;
+                                            @endphp
+                                            <tr style="font-size: 12px">
+                                                <td>{{$aux}}</td>
+                                                <td>{{$of['codOficina']}}</td>
+                                                <td>{{$of['codZona']}}</td>
+                                                <td>{{$of['descripcion']}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    
-  </div>
-  </div>
- </div>
- <!-- /.card -->
 </div>
-</div>
-</section>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -140,7 +134,4 @@ $aux=$aux+1;
     });
   });
 </script>
-
-
-
 @endsection

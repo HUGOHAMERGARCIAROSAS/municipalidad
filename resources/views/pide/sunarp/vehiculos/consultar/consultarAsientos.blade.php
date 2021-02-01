@@ -11,7 +11,7 @@
             </div>
           </div>
           <!-- /.Fin de desplegar y contraer contenido -->
-         
+
           <div class="card-body">
             <div class="row">
 
@@ -20,9 +20,9 @@
 		                 <label>Oficina</label>
 		                  <!--<input type="text" class="form-control" id="razon_social" name="razon_social" placeholder="Ingresa una placa">-->
 		                 <select class="form-control" name="oficinaAsiento" id="oficinaAsiento">
-	                                                
+
 		                    <option value="0">Seleccione</option>
-		                    @foreach($oficinas as $of) 
+		                    @foreach($oficinas as $of)
 		                    <option value="{{$of['codZona']}} {{$of['codOficina']}}">{{$of['descripcion']}} - {{$of['codZona']}} - {{$of['codOficina']}}</option>
 		                    @endforeach
 		                </select>
@@ -34,7 +34,7 @@
 		                 <label>Tipo Registro</label>
 		                  <!--<input type="text" class="form-control" id="razon_social" name="razon_social" placeholder="Ingresa una placa">-->
 		                 <select class="form-control" name="registro" id="registro">
-	                                                
+
 		                    <option value="0" selected="selected">Seleccione</option>
 		                    <option value="21000">PROPIEDAD INMUEBLE - 21000</option>
 		                    <option value="22000">PERSONAS JURÍDICAS - 22000</option>
@@ -52,18 +52,18 @@
 	              </div>
 	            </div>
 
-	            
+
             	<!--<div class="col-md-3">
               	<div class="form-group">
                 	<label>Acción</label>
                 	<button type="submit" class="btn btn-block btn-primary"><i class="fa fa-search fa-1x"></i> Buscar</button>
-              	</div>              
+              	</div>
             	</div>-->
               <!-- /.col -->
             </div>
          </div>
-        
-          
+
+
 </div>
         <!-- /.card -->
 </div>
@@ -96,7 +96,7 @@
             </div>
           </div>
           <!-- /.Fin de desplegar y contraer contenido -->
- 
+
 
 <!--INICIO TABLA-->
 	<div class="card-body">
@@ -109,9 +109,9 @@
 			        </p>
 		      	</div>
 
-		        <div class="table-responsive" id="contenedor_asientos">   
+		        <div class="table-responsive" id="contenedor_asientos">
 		    	</div>
-			</div>	
+			</div>
 		</div>
 	</div>
 
@@ -126,9 +126,9 @@
 			        </p>
 		    </div>
 
-		    <div class="table-responsive" id="contenedor_fichas">   
+		    <div class="table-responsive" id="contenedor_fichas">
 		    </div>
-		</div>	
+		</div>
 	</div>
 </div>
 
@@ -145,7 +145,7 @@
 			        </p>
 		    </div>
 
-		    <div class="table-responsive" id="contenedor_folios">   
+		    <div class="table-responsive" id="contenedor_folios">
 		    </div>
 		</div>
 	</div>
@@ -161,7 +161,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+
 		$("#cargandoAsientos").hide();
 		$("#cargandoFicha").hide();
 		$("#cargandoFolio").hide();
@@ -300,8 +300,8 @@
 			          numero_partida: numero_partida
 			      		},
 			          dataType: "json",
-			          type:"get",      
-			        
+			          type:"get",
+
 			        })
 					.done(function(response){
 			        var htmlAsientos;
@@ -312,15 +312,15 @@
 			        $('#contenedor_folios').empty();
 				        $.each(response, function(index, element){
 				        var validarAsiento = element.listarAsientosResponse.asientos.transaccion;
-				        console.log("transaccion", validarAsiento);		
+				        console.log("transaccion", validarAsiento);
 				        if(validarAsiento==0){
 				        		mostrarAlerta();
-				        }	
-				        else{			          	
+				        }
+				        else{
 				          	var transaccion= element.listarAsientosResponse.asientos.transaccion;
 				          	var nroPaginas = element.listarAsientosResponse.asientos.nroTotalPag;
-				          	
-				          	
+
+
 	            			var pagina="";
 	            			var nroPagRef="";
 	            			var idImg="";
@@ -352,8 +352,8 @@
 					            htmlAsientos+='<td>';
 					            htmlAsientos+='<div class="dropdown"><button class="btn btn-success  dropdown-toggle" data-toggle="dropdown" type="button">Lista Pag.<span class="caret"></span></button><ul class="dropdown-menu">';
 					              	var lenpaginasAsientos=element.listarAsientosResponse.asientos.listAsientos.listPag.length;
-					              	
-					              	
+
+
 					              	console.log(lenpaginasAsientos);
 					              	for(var j=0;j<lenpaginasAsientos;j++){
 					              		nroPagRef= element.listarAsientosResponse.asientos.listAsientos.listPag[j].nroPagRef;
@@ -373,8 +373,8 @@
 					              	htmlAsientos+='</ul>';
 					              	htmlAsientos+='</div>'
 					              	htmlAsientos+='</td>';
-					              	
-					              	
+
+
 					              }else{
 					              	/*htmlAsientos+='<td>'+element.listarAsientosResponse.asientos.listAsientos[i].listPag.nroPagRef+'</td>';*/
 					              //var pagina=element.listarAsientosResponse.asientos.listAsientos[i].listPag.nroPagRef;
@@ -435,14 +435,14 @@
 			              }else{
 			              htmlAsientos+='<td>'+element.listarAsientosResponse.asientos.listAsientos[i].tipo+'</td>';
 			              }
-			              
+
 			              if(element.listarAsientosResponse.asientos.listAsientos[i].numPag>1){
 
 			              htmlAsientos+='<td>';
 			              htmlAsientos+='<div class="dropdown"><button class="btn btn-success  dropdown-toggle" data-toggle="dropdown" type="button">Lista Pag.<span class="caret"></span></button><ul class="dropdown-menu">';
 			              	var lenpaginasAsientos=element.listarAsientosResponse.asientos.listAsientos[i].listPag.length;
-			              	
-			              	
+
+
 			              	console.log(lenpaginasAsientos);
 			              	for(var j=0;j<lenpaginasAsientos;j++){
 			              		nroPagRef= element.listarAsientosResponse.asientos.listAsientos[i].listPag[j].nroPagRef;
@@ -462,8 +462,8 @@
 			              	htmlAsientos+='</ul>';
 			              	htmlAsientos+='</div>'
 			              	htmlAsientos+='</td>';
-			              	
-			              	
+
+
 			              }else{
 			              	/*htmlAsientos+='<td>'+element.listarAsientosResponse.asientos.listAsientos[i].listPag.nroPagRef+'</td>';*/
 			              //var pagina=element.listarAsientosResponse.asientos.listAsientos[i].listPag.nroPagRef;
@@ -485,7 +485,7 @@
 			              htmlAsientos+='</div>'
 			              htmlAsientos+='</td>';
 			              }
-			              
+
 			              htmlAsientos+='</tr>';
 			          	}
 			          	htmlAsientos+='</table>';
@@ -493,9 +493,9 @@
 			            $("#cargandoAsientos").hide();
 			            $("#listo").show();
 				        	}
-				        
+
 				        }
-	            		
+
 
 
 				        if(element.Fichas==1){
@@ -536,7 +536,7 @@
 			            	htmlFichas+='<td>';
 			              	htmlFichas+='<div class="dropdown"><button class="btn btn-success  dropdown-toggle" data-toggle="dropdown" type="button">Lista Pag.<span class="caret"></span></button><ul class="dropdown-menu">';
 			            	var paginas="";
-			              	
+
 			              	for(var j=0;j<lenFichas;j++){
 			              		nroPagRef= element.listarAsientosResponse.asientos.listFichas.listPag[j].nroPagRef;
 
@@ -550,7 +550,7 @@
 			              		url = url.replace( 'nroPagRef', nroPagRef);
 			              		url = url.replace( 'pagina', pagina);
 			              		htmlFichas+='<li class=" tam-cuerpo"><a target="_blank" id="link" href="'+url+'"><button class="btn btn-success" type="submit"><i aria-hidden="true" class="fa fa-eye"></i></button></a>nroPagRef: '+nroPagRef+', Pagina: '+pagina+'</li>';
-			              		
+
 			              	}
 			              	htmlFichas+='</ul>';
 			              	htmlFichas+='</div>'
@@ -581,8 +581,8 @@
 			            htmlFichas+='</table>';
 			          	$('#contenedor_fichas').append(htmlFichas);
 				        }
-				        
-			            
+
+
 
 				        if(element.Folios==1){
 				        	/*CONSTRUCCION TABLA FOLIO*/
@@ -637,7 +637,7 @@
 			          	htmlFolios+='</table>';
 			          	$('#contenedor_folios').append(htmlFolios);
 				        }
-			            
+
 
 
 
@@ -653,7 +653,7 @@
 			            mostrarExito();
 			        	}
 	            		});
-					
+
 				$('#dataasientos').DataTable({
                 language: {
                 "lengthMenu": "Mostrar _MENU_ registros",

@@ -1,4 +1,4 @@
-@extends('layout.index3')
+@extends('layouts.main')
 @section('style')
 	<style>
 		#exitoRazonSocial{
@@ -55,178 +55,160 @@
 			text-align:center;
 			display:none;
 		}
+        .down-box{
+            margin-top: 2.3%!important;
+        }
 	</style>
 @endsection
 @section('content')
-<div class="content-header">
-      <div class="container-fluid">
-      </div><!-- /.container-fluid -->
-</div>
-<section class="content">
-<div class="container-fluid">
-<div class="card card-gray">
-		<!-- Desplegar y contraer contenido -->
-          <div class="card-header">
-            <h3 class="card-title">Busqueda de Asientos Sunarp</h3>
-
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="pe-7s-keypad" style="color: #3f6ad8"></i>
+                    </div>
+                    <div>
+                        Busqueda de Asientos Sunarp
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- /.Fin de desplegar y contraer contenido -->
-         
-          <div class="card-body">
+        </div>
+        <div class="content-header">
+            <div class="container-fluid">
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-gray">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Oficina</label>
+                                        <select class="form-control input-sm" name="oficina" id="oficina">
+                                            <option value="0">Seleccione</option>
+                                            @foreach($oficinas as $of)
+                                            <option value="{{$of['codZona']}} {{$of['codOficina']}}">{{$of['descripcion']}} - {{$of['codZona']}} - {{$of['codOficina']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Tipo Registro</label>
+                                        <select class="form-control input-sm" name="registro" id="registro">
+
+                                            <option value="0" selected="selected">Seleccione</option>
+                                            <option value="21000">PROPIEDAD INMUEBLE - 21000</option>
+                                            <option value="22000">PERSONAS JURÍDICAS - 22000</option>
+                                            <option value="23000">PERSONAS NATURALES - 23000</option>
+                                            <option value="24000">PROPIEDAD MUEBLE - 24000</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>N° Partida</label>
+                                        <input type="text" class="form-control input-sm" id="numero_partida" name="numero_partida" value="" placeholder="Ingresa el N° de partida">
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 text-center down-box">
+                                    <button class="btn btn-primary btn-sm" type="button" onclick="cargar();"><span class="fa fa-search"></span> Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                </div>
+            </div>
+        </section>
+
+
+        <div class="card-body">
             <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group-sm"><label id="txtTransaccion">TRANSACCIÓN: </label> </div>
+                </div>
 
-	            <div class="col-sm-4">
-	                <div class="form-group">
-		                 <label>Oficina</label>
-		                  <!--<input type="text" class="form-control" id="razon_social" name="razon_social" placeholder="Ingresa una placa">-->
-		                 <select class="form-control input-sm" name="oficina" id="oficina">
-		                    <option value="0">Seleccione</option>
-		                    @foreach($oficinas as $of) 
-		                    <option value="{{$of['codZona']}} {{$of['codOficina']}}">{{$of['descripcion']}} - {{$of['codZona']}} - {{$of['codOficina']}}</option>
-		                    @endforeach
-		                </select>
-	                </div>
-	            </div>
-
-	            <div class="col-sm-4">
-	                <div class="form-group">
-		                 <label>Tipo Registro</label>
-		                  <!--<input type="text" class="form-control" id="razon_social" name="razon_social" placeholder="Ingresa una placa">-->
-		                 <select class="form-control input-sm" name="registro" id="registro">
-	                                                
-		                    <option value="0" selected="selected">Seleccione</option>
-		                    <option value="21000">PROPIEDAD INMUEBLE - 21000</option>
-		                    <option value="22000">PERSONAS JURÍDICAS - 22000</option>
-		                    <option value="23000">PERSONAS NATURALES - 23000</option>
-		                    <option value="24000">PROPIEDAD MUEBLE - 24000</option>
-		                </select>
-	                </div>
-	            </div>
-              <!-- /.col -->
-
-	            <div class="col-sm-4">
-	              <div class="form-group">
-	                <label>N° Partida</label>
-	                <input type="text" class="form-control input-sm" id="numero_partida" name="numero_partida" value="" placeholder="Ingresa el N° de partida">
-	              </div>
-	            </div>
-
-	            
-            	<!--<div class="col-md-3">
-              	<div class="form-group">
-                	<label>Acción</label>
-                	<button type="submit" class="btn btn-block btn-primary"><i class="fa fa-search fa-1x"></i> Buscar</button>
-              	</div>              
-            	</div>-->
-              <!-- /.col -->
+                <div class="col-sm-4">
+                    <div class="form-group-sm"><label id="txtNroPag">N° DE PÁGINAS: </label> </div>
+                </div>
             </div>
-			  <div class="row">
-				  <div class="col-sm-4">
-				  </div>
-				  <div class="col-sm-4 text-center">
-					  <button class="btn btn-primary btn-sm" type="button" onclick="cargar();"><span class="fa fa-search"></span> Buscar</button>
-				  </div>
-				  <div class="col-sm-4">
-				  </div>
-			  </div>
-         </div>
-        
-          
-</div>
-        <!-- /.card -->
-</div>
-</section>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+            <div class="card card-gray">
+                    <!-- Desplegar y contraer contenido -->
+                    <div class="card-header">
+                        <h3 class="card-title">Lista de Asientos</h3>
+                    </div>
+                    <!-- /.Fin de desplegar y contraer contenido -->
 
 
-<div class="card-body">
- 	<div class="row">
- 		<div class="col-sm-4">
- 			<div class="form-group-sm"><label id="txtTransaccion">TRANSACCIÓN: </label> </div>
- 		</div>
+            <!--INICIO TABLA-->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="cargando" class="text-center">
+                                <img width="200" src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}" />
+                                <p>
+                                Cargando contenido
+                                </p>
+                            </div>
 
- 		<div class="col-sm-4">
- 			<div class="form-group-sm"><label id="txtNroPag">N° DE PÁGINAS: </label> </div>
- 		</div>
- 	</div>
- </div>
+                            <div class="table-responsive" id="contenedor_asientos">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<section class="content">
-<div class="container-fluid">
-<div class="card card-gray">
-		<!-- Desplegar y contraer contenido -->
-          <div class="card-header">
-            <h3 class="card-title">Lista de Asientos</h3>
+                <!--INICIO TABLA-->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="cargandoFicha" class="text-center">
+                                <img width="200" src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}" />
+                                <p>
+                                Cargando contenido
+                                </p>
+                        </div>
 
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                        <div class="table-responsive" id="contenedor_fichas">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- /.Fin de desplegar y contraer contenido -->
- 
 
-<!--INICIO TABLA-->
-	<div class="card-body">
-	  	<div class="row">
-	    	<div class="col-md-12">
-				<div id="cargando" class="text-center">
-		        	<img width="200" src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}" />
-			        <p>
-			          Cargando contenido
-			        </p>
-		      	</div>
+            <!--Fin Tabla-->
 
-		        <div class="table-responsive" id="contenedor_asientos">   
-		    	</div>
-			</div>	
-		</div>
-	</div>
+            <!--INICIO TABLA-->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="cargandoFolio" class="text-center">
+                                <img width="200" src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}" />
+                                <p>
+                                Cargando contenido
+                                </p>
+                        </div>
 
-	<!--INICIO TABLA-->
-<div class="card-body">
-  	<div class="row">
-    	<div class="col-sm-12">
-			<div id="cargandoFicha" class="text-center">
-		        	<img width="200" src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}" />
-			        <p>
-			          Cargando contenido
-			        </p>
-		    </div>
+                        <div class="table-responsive" id="contenedor_folios">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-		    <div class="table-responsive" id="contenedor_fichas">   
-		    </div>
-		</div>	
-	</div>
+            <!--Fin Tabla-->
+            </div>
+            </div>
+        </section>
+    </div>
 </div>
-
- <!--Fin Tabla-->
-
- <!--INICIO TABLA-->
-<div class="card-body">
-  	<div class="row">
-    	<div class="col-sm-12">
-			<div id="cargandoFolio" class="text-center">
-		        	<img width="200" src="{{asset('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif')}}" />
-			        <p>
-			          Cargando contenido
-			        </p>
-		    </div>
-
-		    <div class="table-responsive" id="contenedor_folios">   
-		    </div>
-		</div>
-	</div>
-</div>
-
- <!--Fin Tabla-->
-</div>
-</div>
-</section>
-
 
 
 

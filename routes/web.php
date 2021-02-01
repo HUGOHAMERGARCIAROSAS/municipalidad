@@ -42,7 +42,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/administracion/usuarios/{id}', 'UsuariosController@actualizarUsuario');
         Route::get('/administracion/usuarios/{id}', 'UsuariosController@editarUsuario');
         Route::post('/administracion/usuario/estado', 'UsuariosController@actualizaEstadoUsuario');
-
         Route::get('/administracion/usuarios/permisos_modulos/{id}', 'UsuariosController@verPermisosModulosUsuario');
         Route::post('/administracion/usuarios/permisos_modulos/{id}', 'UsuariosController@registrarPermisosModulosUsuario');
 
@@ -63,17 +62,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/administracion/grupos/estado', 'GrupoController@cambiarEstadoGrupo');
         Route::get('/administracion/grupos/{id}', 'GrupoController@editarGrupo');
         Route::post('/administracion/grupos/{id}', 'GrupoController@actualizarGrupo');
-
         Route::get('/administracion/plantillas', 'PlantillaController@verPlantillas');
         Route::get('/administracion/plantillas/registrar', 'PlantillaController@registrarPlantilla');
         Route::post('/administracion/plantillas/registrar', 'PlantillaController@guardarPlantilla');
         Route::post('/administracion/plantillas/estado', 'PlantillaController@cambiarEstadoPlantilla');
         Route::get('/administracion/plantillas/{id}', 'PlantillaController@editarPlantilla');
         Route::post('/administracion/plantillas/{id}', 'PlantillaController@actualizarPlantilla');
-
         Route::get('/administracion/plantillas/permisos_modulos/{id}', 'PlantillaController@verPermisosModulosUsuario');
         Route::post('/administracion/plantillas/permisos_modulos/{id}', 'PlantillaController@registrarPermisosModulosUsuario');
-
         Route::get('/administracion/plantillas/permisos/{id}', 'PlantillaController@verPermisosUsuario');
         Route::post('/administracion/plantillas/permisos/{id}', 'PlantillaController@registrarPermisosUsuario');
     });

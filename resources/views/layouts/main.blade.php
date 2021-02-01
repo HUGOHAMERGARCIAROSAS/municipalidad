@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +11,15 @@
     <meta name="description" content="Administrador del sistema de la municipalidad de Victor Larco Herrera">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="{{asset('admin/main.d810cf0ae7f39f28f336.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{asset('js/toast.js')}}"></script>
+    @yield('style')
     @yield('css')
 </head>
 <body>
@@ -26,6 +35,62 @@
     </div>
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
     <script type="text/javascript" src="{{asset('admin/scripts/main.d810cf0ae7f39f28f336.js')}}"></script>
+    @if (session('inicio'))
+    <input type="hidden" id="alert" value="{{session('inicio')}}">
+    <script>
+        console.log(document.getElementById('alert').value);
+        $(document).ready(function () {
+            var alert = document.getElementById('alert').value;
+            var options = {
+                style: {
+                    main: {
+                        background: "green",
+                        color: "white"
+                    }
+                }
+            };
+            iqwerty.toast.Toast(alert, options);
+        });
+    </script>
+@endif
+@if (session('alert'))
+
+    <input type="hidden" id="alert" value="{{session('alert')}}">
+    <script>
+        console.log(document.getElementById('alert').value);
+        $(document).ready(function () {
+            var alert = document.getElementById('alert').value;
+            var options = {
+                style: {
+                    main: {
+                        background: "green",
+                        color: "white"
+                    }
+                }
+            };
+            iqwerty.toast.Toast(alert, options);
+        });
+    </script>
+@endif
+@if (session('error'))
+
+    <input type="hidden" id="error" value="{{session('error')}}">
+    <script>
+        console.log(document.getElementById('error').value);
+        $(document).ready(function () {
+            var alert = document.getElementById('error').value;
+            var options = {
+                style: {
+                    main: {
+                        background: "red",
+                        color: "white"
+                    }
+                }
+            };
+            iqwerty.toast.Toast(alert, options);
+        });
+    </script>
+@endif
     <script>
         $('#modulo').change(function (e) {
             e.preventDefault();
@@ -42,7 +107,6 @@
                 }
             });
         });
-
         $('#modulo1').change(function (e) {
             e.preventDefault();
             $.ajax({

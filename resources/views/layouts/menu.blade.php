@@ -49,11 +49,11 @@
                         @foreach($grupos as $g)
                             <li  class="mm-active" id="g-{{$g->grupo_id}}">
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-portfolio"></i>{{$g->gru_nombre}}
+                                    <i class="nav-icon fa {{$g->gru_icons}}" style="margin-left: -18%"></i>&nbsp;&nbsp;{{$g->gru_nombre}}
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
-                                    {{-- @foreach($tareas as $t)
+                                    @foreach($tareas as $t)
                                         @if($g->grupo_id==$t->grupo_id)
                                             <li>
                                                 <a href="{{url(session('pagina').'/'.$t->tarea_url)}}"  class="@if (Request::is(session('pagina').'/'.$t->tarea_url)) mm-active @endif" >
@@ -61,13 +61,13 @@
                                                 </a>
                                             </li>
                                         @endif
-                                    @endforeach --}}
+                                    @endforeach
                                 </ul>
                             </li>
                         @endforeach
                     @endif
                 @endif
-                {{-- <li  class="mm-active"      >
+                {{-- <li  class="mm-active">
                     <a href="#">
                         <i class="metismenu-icon pe-7s-rocket"></i>Dashboards
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
