@@ -26,6 +26,58 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/modulos/{modulo}', 'WelcomeController@modulos')->name('modulo');
     Route::post('/cambiarpass','WelcomeController@cambiarPass');
 
+    //Administracion
+
+    Route::get('/administracion', function () {
+        return view('administracion');
+    })->name('administracion');
+
+    Route::group(['namespace' => 'Administracion'], function () {
+        // Rutas de los controladores dentro del Namespace "App\Http\Controllers\Admin"
+        Route::get('/administracion/usuarios', 'UsuariosController@verUsuarios')->name('usuarios');
+        Route::get('/administracion/usuarios/buscar_trababajadores', 'UsuariosController@buscarTrabajadores');
+        Route::get('/administracion/usuarios/buscar_trababajadores_area', 'UsuariosController@buscarTrabajadoresArea');
+        Route::post('/administracion/usuarios/registrar', 'UsuariosController@guardarUsuario');
+        Route::get('/administracion/usuarios/registrar', 'UsuariosController@registrarUsuario');
+        Route::post('/administracion/usuarios/{id}', 'UsuariosController@actualizarUsuario');
+        Route::get('/administracion/usuarios/{id}', 'UsuariosController@editarUsuario');
+        Route::post('/administracion/usuario/estado', 'UsuariosController@actualizaEstadoUsuario');
+
+        Route::get('/administracion/usuarios/permisos_modulos/{id}', 'UsuariosController@verPermisosModulosUsuario');
+        Route::post('/administracion/usuarios/permisos_modulos/{id}', 'UsuariosController@registrarPermisosModulosUsuario');
+
+        Route::get('/administracion/usuarios/permisos/{id}', 'UsuariosController@verPermisosUsuario');
+        Route::post('/administracion/usuarios/permisos/{id}', 'UsuariosController@registrarPermisosUsuario');
+
+        Route::get('/administracion/listar_grupos', 'PermisosController@listarGruposModulo');
+        Route::get('/administracion/tareas', 'TareaController@verTareas');
+        Route::get('/administracion/tareas/registrar', 'TareaController@registrarTarea');
+        Route::post('/administracion/tareas/registrar', 'TareaController@guardarTarea');
+        Route::post('/administracion/tareas/estado', 'TareaController@cambiarEstadoTarea');
+        Route::get('/administracion/tareas/{id}', 'TareaController@editarTarea');
+        Route::post('/administracion/tareas/{id}', 'TareaController@actualizarTarea');
+
+        Route::get('/administracion/grupos', 'GrupoController@verGrupos');
+        Route::get('/administracion/grupos/registrar', 'GrupoController@registrarGrupo');
+        Route::post('/administracion/grupos/registrar', 'GrupoController@guardarGrupo');
+        Route::post('/administracion/grupos/estado', 'GrupoController@cambiarEstadoGrupo');
+        Route::get('/administracion/grupos/{id}', 'GrupoController@editarGrupo');
+        Route::post('/administracion/grupos/{id}', 'GrupoController@actualizarGrupo');
+
+        Route::get('/administracion/plantillas', 'PlantillaController@verPlantillas');
+        Route::get('/administracion/plantillas/registrar', 'PlantillaController@registrarPlantilla');
+        Route::post('/administracion/plantillas/registrar', 'PlantillaController@guardarPlantilla');
+        Route::post('/administracion/plantillas/estado', 'PlantillaController@cambiarEstadoPlantilla');
+        Route::get('/administracion/plantillas/{id}', 'PlantillaController@editarPlantilla');
+        Route::post('/administracion/plantillas/{id}', 'PlantillaController@actualizarPlantilla');
+
+        Route::get('/administracion/plantillas/permisos_modulos/{id}', 'PlantillaController@verPermisosModulosUsuario');
+        Route::post('/administracion/plantillas/permisos_modulos/{id}', 'PlantillaController@registrarPermisosModulosUsuario');
+
+        Route::get('/administracion/plantillas/permisos/{id}', 'PlantillaController@verPermisosUsuario');
+        Route::post('/administracion/plantillas/permisos/{id}', 'PlantillaController@registrarPermisosUsuario');
+    });
+
 
     //Pide
 
