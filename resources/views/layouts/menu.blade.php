@@ -1,7 +1,7 @@
 <?php
     if (!is_null(session('grupos'))) {
     $grupos = session('grupos');
-    dd($grupos);
+    //dd($grupos);
     }
     if (!is_null(session('tareas'))) {
     $tareas = session('tareas');
@@ -53,7 +53,7 @@
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
-                                    @foreach($tareas as $t)
+                                    {{-- @foreach($tareas as $t)
                                         @if($g->grupo_id==$t->grupo_id)
                                             <li>
                                                 <a href="{{url(session('pagina').'/'.$t->tarea_url)}}"  class="@if (Request::is(session('pagina').'/'.$t->tarea_url)) mm-active @endif" >
@@ -61,7 +61,7 @@
                                                 </a>
                                             </li>
                                         @endif
-                                    @endforeach
+                                    @endforeach --}}
                                 </ul>
                             </li>
                         @endforeach

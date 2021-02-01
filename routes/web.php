@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//mtorres
 //lucas@MANUEL1
 
 Route::get('/', 'WelcomeController@verPrincipal')->name('/');
@@ -80,7 +80,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //Pide
-
     Route::get('/pide', function () {
         return view('pide.home');
     })->name('pide');
@@ -114,7 +113,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('pide/imagen/{transaccion}/{idImg}/{tipo}/{nroTotalPag}/{nroPagRef}/{pagina}', 'VerImagenController@show')->name('verimagen');
     });
-
 
     //tramite documentario
     Route::get('/tramitedocumentario', function () {
